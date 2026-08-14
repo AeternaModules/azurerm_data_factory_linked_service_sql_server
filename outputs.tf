@@ -28,11 +28,11 @@ output "data_factory_linked_service_sql_servers_integration_runtime_name" {
 }
 output "data_factory_linked_service_sql_servers_key_vault_connection_string" {
   description = "Map of key_vault_connection_string values across all data_factory_linked_service_sql_servers, keyed the same as var.data_factory_linked_service_sql_servers"
-  value       = { for k, v in azurerm_data_factory_linked_service_sql_server.data_factory_linked_service_sql_servers : k => v.key_vault_connection_string if v.key_vault_connection_string != null && length(v.key_vault_connection_string) > 0 }
+  value       = { for k, v in azurerm_data_factory_linked_service_sql_server.data_factory_linked_service_sql_servers : k => one(v.key_vault_connection_string) if v.key_vault_connection_string != null && length(v.key_vault_connection_string) > 0 }
 }
 output "data_factory_linked_service_sql_servers_key_vault_password" {
   description = "Map of key_vault_password values across all data_factory_linked_service_sql_servers, keyed the same as var.data_factory_linked_service_sql_servers"
-  value       = { for k, v in azurerm_data_factory_linked_service_sql_server.data_factory_linked_service_sql_servers : k => v.key_vault_password if v.key_vault_password != null && length(v.key_vault_password) > 0 }
+  value       = { for k, v in azurerm_data_factory_linked_service_sql_server.data_factory_linked_service_sql_servers : k => one(v.key_vault_password) if v.key_vault_password != null && length(v.key_vault_password) > 0 }
 }
 output "data_factory_linked_service_sql_servers_name" {
   description = "Map of name values across all data_factory_linked_service_sql_servers, keyed the same as var.data_factory_linked_service_sql_servers"
